@@ -1,0 +1,17 @@
+# Validate that project builds on pushes to main
+# TODO (runewake2): run tests
+on:
+  push:
+    branches:
+    - main
+jobs:
+  validate-branch-state:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x'
+    - run: |
+        dotnet build BookmarkGen
+        dotnet build BookmarkGenConsole
