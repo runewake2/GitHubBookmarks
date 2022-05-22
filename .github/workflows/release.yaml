@@ -21,6 +21,11 @@ jobs:
     - name: Publish Binary
       run: |
         dotnet publish BookmarkGenConsole -c Release -o out --self-contained -r linux-x64
+        mv out/BookmarkGenConsole out/gitmarker-linux
+        dotnet publish BookmarkGenConsole -c Release -o out --self-contained -r win-x64
+        mv out/BookmarkGenConsole.exe out/gitmarker-win.exe
+        dotnet publish BookmarkGenConsole -c Release -o out --self-contained -r osx-x64
+        mv out/BookmarkGenConsole out/gitmarker-darwin
     - name: Create Release
       uses: softprops/action-gh-release@v1
      
@@ -28,4 +33,6 @@ jobs:
         draft: true
         body: 'Console release of Bookmark Gen'
         files: |
-          out/BookmarkGenConsole
+          out/gitmarker-linux
+          out/gitmarker-win.exe
+          out/gitmarker-darwin
