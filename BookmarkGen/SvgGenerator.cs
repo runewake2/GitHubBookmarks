@@ -90,14 +90,14 @@ public class SvgGenerator
             fill=""none"" stroke=""black"" />
     <path d=""{GetPathBookmark(values)}""
             fill=""none"" stroke=""black"" />
-    <text x=""{roundEdges}"" y=""{minHeight/2}"" alignment-baseline=""middle"" style=""font-weight: bolder"">{leftText}</text>
-    <text x=""{width-roundEdges}"" y=""{minHeight/2}"" alignment-baseline=""middle"" text-anchor=""end"">{rightText}</text>
+    <text x=""{roundEdges}"" y=""{maxHeight-minHeight/2}"" alignment-baseline=""middle"" style=""font-weight: bolder"">{leftText}</text>
+    <text x=""{width-roundEdges}"" y=""{maxHeight-minHeight/2}"" alignment-baseline=""middle"" text-anchor=""end"">{rightText}</text>
 </svg>
 ";
     }
 
     public string PointToString(SvgVector2 vector) {
-        return $"{vector.modifier}{vector.x},{vector.y}";
+        return $"{vector.modifier}{vector.x},{maxHeight-vector.y}";
     }
 
     protected void InitPoint(IList<SvgVector2> vectors, Vector2 point) {
