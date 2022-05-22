@@ -20,4 +20,12 @@ jobs:
         dotnet test BookmarkGen.Tests
     - name: Publish Binary
       run: |
-        dotnet publish BookmarkGenConsole -c Release
+        dotnet publish BookmarkGenConsole -c Release -o out --self-contained -r linux-x64
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+     
+      with:
+        draft: true
+        body: 'Console release of Bookmark Gen'
+        files: |
+          out/BookmarkGenConsole
